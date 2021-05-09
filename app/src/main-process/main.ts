@@ -1,6 +1,6 @@
 import '../lib/logging/main/install'
 
-import { app, Menu, ipcMain, BrowserWindow, shell } from 'electron'
+import { app, Menu, ipcMain, BrowserWindow, shell} from 'electron'
 import * as Fs from 'fs'
 import * as URL from 'url'
 
@@ -457,6 +457,21 @@ app.on('ready', () => {
       })
     }
   )
+
+  ipcMain.on('some-name', (event, someArgument) => {
+    console.log("----main1------")
+    console.log(someArgument)
+    console.log("--------------------")
+  })
+
+  /*
+  ipcMain.handle('some-name', async (event, someArgument) => {
+    console.log("--------------------")
+    console.log(someArgument)
+    console.log("--------------------")
+    return true
+  })
+   */
 
   /**
    * An event sent by the renderer asking for a copy of the current
